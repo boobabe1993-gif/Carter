@@ -233,6 +233,28 @@ class Game:
         else:
             print("🤝 It's a TIE! 🤝")
 
+def create_chiefs():
+    """Create Kansas City Chiefs team"""
+    chiefs = Team("Kansas City Chiefs", TeamSide.HOME, [])
+    
+    chiefs.add_player(Player("Patrick Mahomes", 15, "QB", 85, 90, 95))
+    chiefs.add_player(Player("Isiah Pacheco", 10, "RB", 92, 88, 0))
+    chiefs.add_player(Player("Travis Kelce", 87, "WR", 90, 92, 0))
+    chiefs.add_player(Player("Harrison Butker", 5, "K", 70, 75, 98))
+    
+    return chiefs
+
+def create_49ers():
+    """Create San Francisco 49ers team"""
+    niners = Team("San Francisco 49ers", TeamSide.AWAY, [])
+    
+    niners.add_player(Player("Brock Purdy", 13, "QB", 82, 85, 92))
+    niners.add_player(Player("Christian McCaffrey", 23, "RB", 95, 90, 0))
+    niners.add_player(Player("Brandon Aiyuk", 11, "WR", 93, 85, 0))
+    niners.add_player(Player("Jake Moody", 3, "K", 71, 74, 97))
+    
+    return niners
+
 def create_sample_teams():
     """Create sample teams with players"""
     home_team = Team("Home Hawks", TeamSide.HOME, [])
@@ -255,10 +277,19 @@ def create_sample_teams():
 def main():
     """Main game function"""
     print("\n🏈 AMERICAN FOOTBALL GAME 🏈\n")
+    print("Select teams to play:")
+    print("1. Chiefs vs 49ers")
+    print("2. Hawks vs Falcons")
     
-    home_team, away_team = create_sample_teams()
+    choice = input("\nEnter your choice (1 or 2): ").strip()
+    
+    if choice == "1":
+        home_team = create_chiefs()
+        away_team = create_49ers()
+    else:
+        home_team, away_team = create_sample_teams()
+    
     game = Game(home_team, away_team)
-    
     game.play_game(drives_per_quarter=1)
 
 if __name__ == "__main__":
